@@ -1,4 +1,4 @@
--- Examining the structure of the dataset. 
+-- Examining the structure of the dataset
 
 SELECT column_name, data_type
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.INFORMATION_SCHEMA.COLUMNS`
