@@ -1,25 +1,32 @@
 -- Examining the structure of the dataset. 
+
 SELECT column_name, data_type
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.INFORMATION_SCHEMA.COLUMNS`
 WHERE table_name = 'events_20210131' 
 
 -- Querying a sample of the table’s data
+
 SELECT *
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`
 LIMIT 5
 
 -- Counting the total number of rows in the table
+
 SELECT COUNT(*) AS total_rows
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`
 
 -- Viewing a random sample of the data
+
 SELECT *
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`
 WHERE RAND() < 0.001
 
 -- Counting the Distinct Values within the event_name column
+
 SELECT COUNT(DISTINCT event_name) AS distinct_values
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`
+
+-- Creating a new table with only the relevant columns (and UNNESTING the nested records)
 
 CREATE TABLE `gmsproductanalysis.gmsdb.events_20210131` AS
 SELECT
@@ -27,7 +34,6 @@ SELECT
   event_timestamp, 
   event_name, 
   event_params_unnest.key AS event_params_key,
-  event_params_unnest.value AS event_params_value,
   event_params_unnest.value.string_value AS event_params_string,
   CAST(event_params_unnest.value.int_value AS INT64) AS event_params_int,
   CAST(event_params_unnest.value.float_value AS INT64) AS event_params_float,
@@ -84,6 +90,7 @@ FROM
   UNNEST(items) AS items_unnest
   
   
-  -- Counting the total number of rows in the table
+-- Counting the total number of rows in the table
+  
 SELECT COUNT(*) AS total_rows
 FROM `gmsproductanalysis.gmsdb.events_20210131`
