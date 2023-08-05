@@ -1,4 +1,4 @@
-# Google Merchandise Store: Product Analysis with SQL and Python
+# Google Merchandise Store: Product Analysis with SQL and BigQuery
 
 Product analysis is critical to a business's overall success. Understanding e-commerce product performance is essential for companies to improve product offerings, optimise marketing strategies, and drive higher revenue. 
 
