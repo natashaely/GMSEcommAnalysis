@@ -94,3 +94,10 @@ FROM
   
 SELECT COUNT(*) AS total_rows
 FROM `gmsproductanalysis.gmsdb.events_20210131`
+
+
+-- Checking that all of the dates are in a consistent 'YYYYMMDD' format
+
+SELECT event_date
+FROM `gmsproductanalysis.gmsdb.events_20210131`
+WHERE SAFE.PARSE_DATE('%Y%m%d', event_date) IS NULL
