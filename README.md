@@ -1,6 +1,6 @@
-# Google Merchandise Store: Product Analysis with SQL and BigQuery
+# Google Merchandise Store: E-commerce Analysis with SQL and BigQuery
 
-Product analysis is critical to a business's overall success. Understanding e-commerce product performance is essential for companies to improve product offerings, optimise marketing strategies, and drive higher revenue. 
+Understanding e-commerce product performance is essential for companies to improve product offerings, optimise marketing strategies, and drive higher revenue. 
 
 A deeper understanding of product performance metrics also aids in inventory management, pricing decisions, and promotional activities.
 
