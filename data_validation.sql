@@ -4,13 +4,6 @@ SELECT column_name, data_type
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.INFORMATION_SCHEMA.COLUMNS`
 WHERE table_name = 'events_20210131' 
 
-
--- Querying a sample of the table’s data
-  
-SELECT *
-FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
-LIMIT 5
-
   
 -- Counting the total number of rows in the table
 
@@ -26,6 +19,13 @@ FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.INFORMATION_SCHEMA.CO
 WHERE table_name = 'events_20210131';
 
 
+-- Querying a sample of the table’s data
+  
+SELECT *
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
+LIMIT 5
+
+
 -- Viewing a random sample of the data
 
 SELECT *
@@ -38,7 +38,7 @@ WHERE RAND() < 0.001
 SELECT COUNT(DISTINCT event_name) AS distinct_values
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 
-
+  
 -- Checking that all of the dates are in a consistent 'YYYYMMDD' format
 
 SELECT event_date
