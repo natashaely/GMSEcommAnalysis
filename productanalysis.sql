@@ -267,3 +267,40 @@ GROUP BY
   geo.country
 ORDER BY
   avg_price DESC;
+  
+  
+  -- Items Frequently Purchased Together
+
+WITH
+  item_pairs AS (
+  SELECT
+    i1.item_name AS item1,
+    i2.item_name AS item2,
+    COUNT(DISTINCT t1.event_bundle_sequence_id) AS pair_count
+  FROM
+    `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` t1
+  CROSS JOIN
+    UNNEST(t1.items) AS i1
+  JOIN
+    `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` t2
+  ON
+    t1.event_bundle_sequence_id = t2.event_bundle_sequence_id
+  CROSS JOIN
+    UNNEST(t2.items) AS i2
+  WHERE
+    t1.event_name = 'purchase'
+    AND t2.event_name = 'purchase'
+    AND i1.item_name < i2.item_name
+  GROUP BY
+    item1,
+    item2 )
+SELECT
+  item1,
+  item2,
+  pair_count
+FROM
+  item_pairs
+ORDER BY
+  pair_count DESC
+LIMIT
+  10;
