@@ -6,7 +6,7 @@ FROM
   `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 
 
--- Examining the overall distribution of event values for purchase events
+-- Summary statistics: Event values for purchase events
 
 SELECT
   MIN(event_value_in_usd) AS min_value,
@@ -19,7 +19,7 @@ WHERE
   event_name = 'purchase'
 
 
--- Examining the overall distribution of purchase revenue in USD
+-- Summary statistics: Purchase revenue in USD
 
 SELECT
   MIN(ecommerce.purchase_revenue_in_usd) AS min_value,
@@ -30,7 +30,7 @@ FROM
   `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 
 
--- Examining Price distribution
+-- Summary statistics: Examining price distribution
 
 SELECT 
     MIN(item.price_in_usd) AS min_value,
@@ -42,7 +42,7 @@ FROM
     UNNEST(items) AS item
 
 
--- Examining the overall distribution of item revenue
+-- Summary statistics: Item revenue
 
 SELECT
   MIN(item.item_revenue_in_usd) AS min_value,
@@ -54,7 +54,7 @@ FROM
   UNNEST(items) AS item
 
 
--- Examining the overall distribution of  user lifetime revenue
+-- Summary statistics: User lifetime revenue
 
 SELECT
   MIN(user_ltv.revenue) AS min_value,
